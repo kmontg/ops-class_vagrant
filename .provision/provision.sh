@@ -46,8 +46,11 @@ fi
 
 # 24 Dec 2015 : GWA : Remount shared folders with correct ownership on
 # every boot.
+# KM: Upstart will take care of re-mounting shared folders with proper group (trinity) and user (trinity) ownership
 mv /tmp/sharedfolders.conf /etc/init/
 chown root:root /etc/init/sharedfolders.conf
+# For the first bount, manually re-mount the shared folders
 mount -t vboxsf -o uid=10000,gid=10000 home_trinity_src /home/trinity/src
+mount -t vboxsf -o uid=10000,gid=10000 home_trinity_misc /home/trinity/misc
 
 updatedb
